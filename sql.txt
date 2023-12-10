@@ -1,0 +1,19 @@
+Задание 1
+
+SELECT ord."courierId",
+COUNT(ord.id)
+FROM "Couriers" AS cour
+INNER JOIN "Orders" AS ord ON cour.id=ord."courierId"
+WHERE "inDelivery"=true
+GROUP BY "courierId";
+
+Задание 2
+
+select track,
+CASE
+WHEN "inDelivery"=true AND finished=false THEN 1
+WHEN "inDelivery"=true AND finished=true THEN 2
+WHEN cancelled=true THEN -1
+ELSE 0
+END AS status
+from "Orders";
